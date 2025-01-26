@@ -69,3 +69,30 @@
 
     kubectl create secret generic postgres-credentials --from-literal db.username=dbuser --from-literal db.password=dbpass123 --from-literal db.url=jdbc:postgresql://192.168.182.151:5432/javadb 
 
+**Create Deployment in Kubernetes**
+
+      containers:
+      - image: asdxxyy/-javajar
+        env:
+        - name: DB_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: postgres-credentials
+              key: db.username
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgres-credentials
+              key: db.password
+        - name: DB_URL
+          valueFrom:
+            secretKeyRef:
+              name: postgres-credentials
+              key: db.url
+        name: jar
+        ports:
+        - containerPort: 1919
+        
+
+
+
