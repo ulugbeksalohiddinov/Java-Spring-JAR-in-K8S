@@ -54,3 +54,18 @@
         path: /swagger-ui/
       api-docs:
         path: /v3/api-docs
+
+**Login DockerHub**
+    
+    docker login --username asdxxyy
+
+**Create docker image and push DockerHub**
+
+    docker build -t asdxxyy/-javajar .
+
+    docker pull asdxxyy/-javajar
+
+**Create Secret in Kubernetes**
+
+    kubectl create secret generic postgres-credentials --from-literal db.username=dbuser --from-literal db.password=dbpass123 --from-literal db.url=jdbc:postgresql://192.168.182.151:5432/javadb 
+
