@@ -221,3 +221,8 @@
     #Ingress-Params
     domen: kubs.uz
     pathType: Prefix
+
+**commond**
+
+helm template java-jar ./java-jar/ --set "application.reloader=true" --debug > app.yaml
+helm install java-jar ./java-jar/
