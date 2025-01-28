@@ -92,7 +92,47 @@
         name: jar
         ports:
         - containerPort: 1919
-        
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**Via Helm**
+
+
+   cd helm/java-jar
+   helm create java-jar
+
+**deployment.yaml**
+
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: {{ .Release.Name }}-app
+      labels:
+        app: {{ .Release.Name }}-app
+        chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+        release: {{ .Release.Name }}
+        heritage: {{ .Release.Service }}
+    spec:
+      replicas: {{ .Values.replicaCount }}
+      revisionHistoryLimit: {{ .Values.revisionHistoryLimit }}
+      selector:
+        matchLabels:
+          app: {{ .Release.Name }}-app
+      template:
+        metadata:
+          labels:
+            app: {{ .Release.Name }}-app
+        spec:
+          containers:
+          - name: {{ .Release.Name }}-app
+            image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+            imagePullPolicy: {{ .Values.image.pullPolicy }}
+            env:
+            {{- toYaml .Values.env | nindent 8 }}
+            ports:
+              - containerPort: {{ .Values.containerPort }}
+            resources:
+              {{- toYaml .Values.resources | nindent 10 }}    
 
 
 
