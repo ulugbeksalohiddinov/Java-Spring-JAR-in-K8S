@@ -195,7 +195,6 @@
     #Ports
     containerPort: 1919
 
-
     #ENV-ConfigMap
     env:
     - name: DB_USERNAME
