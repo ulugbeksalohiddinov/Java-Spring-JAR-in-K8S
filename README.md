@@ -61,9 +61,9 @@
 
 **Create docker image and push DockerHub**
 
-    docker build -t asdxxyy/-javajar .
+    docker build -t asdxxyy/javajar .
 
-    docker pull asdxxyy/-javajar
+    docker pull asdxxyy/javajar
 
 **Create Secret in Kubernetes**
 
